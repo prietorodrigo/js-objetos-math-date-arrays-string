@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h2>Exercício 1</h2>
+		<p>Desenvolva uma função que conta quantos dias faltam para o seu próximo aniversário.</p>
+		<button id="btnUm">Calcular</button><br />
+        <p id="resultadoUm"></p>
+		<hr />
+
+        <h2>Exercício 2</h2>
+		<p>Desenvolva uma função que calcula um número elevado a outro. Deve-se pedir ao usuário os dois números, pode ser por prompt ou pelo documento.</p>
+		Base: <input type="number" id="base"/><br />
+        Expoente: <input type="number" id="expoente"/><br /><br />
+        <button id="btnDois">Calcular</button>
+        <p id="resultadoDois"></p>
+		<hr />
+
+		<p>Considere o seguinte array para fazer os exercícios 3, 4 e 5:</p>
+        <p>Conteúdo do array: Teste, Passe, Leite, Café, HTML, JAVA, JS, CSS, Casa</p>
+        <hr />
+        <h2>Exercício 3</h2>
+        <p>Desenvolva uma função que faz uma busca no array.  Deve-se pedir ao usuário que informe uma String a ser pesquisada. Pode-se pedir por prompt ou pelo documento.</p>
+		Informe uma String: <input type="text" id="#inputExercicio3"/><br /><br />
+        <button id="btnTres">Buscar</button>
+        <p id="resultadoTres"></p>
+		<hr />
+
+        <h2>Exercício 4</h2>
+        <p>Desenvolva uma função que insere um novo item no inicio do array, e após, imprime o conteúdo, no documento ou console. Podes pedir por prompt ou pelo documento.</p>
+		Informe uma String: <input type="text" id="#inputExercicio4"/><br /><br />
+        <button id="btnQuatro">Inserir</button>
+        <p id="resultadoQuatro"></p>
+		<hr />
+
+        <h2>Exercício 5</h2>
+        <p>Desenvolva uma função que insere um novo item no final do array, e após, imprime o conteúdo, no documento ou console. Podes pedir por prompt ou pelo documento.</p>
+		Informe uma String: <input type="text" id="#inputExercicio5"/><br /><br />
+        <button id="btnCinco">Inserir</button>
+        <p id="resultadoCinco"></p>
+
+        <script>
+            // Exercício 1
+            document.querySelector('#btnUm').onclick = function diasProxAniversario() {
+                var hoje = new Date();
+                var proxaniv = new Date(2023, 4, 15, 23, 59, 59, 999); // Seta dia e mês
+                proxaniv.setFullYear(hoje.getFullYear()); // Seta o ano para esse ano
+                var msPorDia = 24 * 60 * 60 * 1000; // Quantidade de milisegundos por dia
+                var diasRestantes = (proxaniv.getTime() - hoje.getTime()) / msPorDia;
+                var diasRestantes = Math.round(diasRestantes); //retorna os dias restantes no ano
+                document.querySelector("#resultadoUm").textContent = "Faltam "+diasRestantes+" dias para o seu próximo aniversário.";
+            }
+            
+            // Exercício 2
+            document.querySelector('#btnDois').onclick = function exponencial() {
+                let base = document.querySelector("#base").value;
+                let expoente = document.querySelector("#expoente").value;
+                var exp = Math.pow(base, expoente);
+                document.querySelector("#resultadoDois").textContent = "Resultado: "+exp;
+            }
+            
+            let arr = ["Teste", "Passe", "Leite", "Café", "HTML", "JAVA", "JS", "CSS", "Casa"];
+            // Exercício 3
+            document.querySelector("#btnTres").onclick = function buscar() {
+                let str = document.getElementById("#inputExercicio3").value;
+                if (arr.indexOf(str) >= 0 ) {
+                    document.querySelector("#resultadoTres").textContent = "O valor pesquisado se encontra na posição "+arr.indexOf(str)+" do array";
+                }
+                else {
+                    document.querySelector("#resultadoTres").textContent = "O valor pesquisado não se encontra no array";
+                }
+            }
+
+            // Exercício 4
+            document.querySelector("#btnQuatro").onclick = function inserirInicio() {
+                let str = document.getElementById("#inputExercicio4").value;
+                arr.unshift(str);
+                document.querySelector("#resultadoQuatro").textContent = arr.join(" - ");
+            }
+
+            // Exercício 5
+            document.querySelector("#btnCinco").onclick = function inserirFinal() {
+                let str = document.getElementById("#inputExercicio5").value;
+                arr.push(str);
+                document.querySelector("#resultadoCinco").textContent = arr.join(" - ");
+            }
+        </script>
+    </body>
+</html>
